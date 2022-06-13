@@ -1,0 +1,7 @@
+{
+  "name": "E-com",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
