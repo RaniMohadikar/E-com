@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registration Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form [formGroup] ="regForm">
+  <ion-row>
+    <ion-col size="12"  >
+     <ion-img src="/assets/ankhub logo.png" class="img" ></ion-img><br>
+    </ion-col>
+    <ion-col size="12" >
+      <h1 class="head"><b>Create a New Account</b></h1>
+      <p class="p">Please put your information Below to create a new account for using app</p>
+    </ion-col>
+    
+    <ion-col size="12">
+      <ion-item>
+        <ion-input type="text" placeholder="Full Name" formControlName="fullName"
+        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['fullName'].invalid}"
+        ></ion-input>
+        
+      </ion-item>
+      </ion-col>
+    <ion-col size="12">
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"
+        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['email'].invalid}"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item>
+        <ion-input type="Password" placeholder="Password" formControlName="passWord"
+        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['passWord'].invalid}"
+        
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-button expand="block" class="regbtn" (click)="reg()" >Register Now</ion-button>
+    </ion-col>
+  </ion-row><br>
+</form>
+  <ion-row>
+    <ion-col size="12" class="r2">
+      <span>Already have an account? <a href="" class="a">Join Now</a></span>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="r3">
+      <span><u>Or sign in with</u> </span>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top:10px ;padding-bottom: 20px;">
+    <ion-col size="3">
+      <ion-button expand="block" class="btn1" ><img src="/assets/fb.png" alt="" style="height: 30px;"></ion-button>
+
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn2" ><img src="/assets/google.png" alt="" style="height: 25px;"></ion-button>
+      
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn3" ><img src="/assets/Instagram-Circle.png" alt=""style="height: 25px;"></ion-button>
+
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn4" ><img src="/assets/git.png" alt=""style="height: 25px;" ></ion-button>
+
+    </ion-col>
+  </ion-row>
+</ion-content>
