@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'front',
     loadChildren: () => import('./front/front.module').then( m => m.FrontPageModule)
   },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
 
 
 ];
