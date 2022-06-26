@@ -1,8 +1,15 @@
 #logo {
+    // width: 120px;
+    // height: 110px;
+    // margin-top: 165px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 120px;
     height: 110px;
     margin-top: 165px;
-    margin-left: 35%;
+
 } 
 
 #para {
@@ -10,7 +17,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 650;
     font-size: 22px;
-    margin-left: 10px;
+    // margin-left: 10px;
     margin-top: 10px;
 }
 
@@ -26,9 +33,9 @@
 }
 
 #btnsign {
-    margin-top: 100px;
-    margin-left: 40px;
-    width: 110px;
+    margin-top: 110px;
+    margin-left: 30px;
+    width: 100px;
     font-weight: 550;
     font-size: 12px;
 
@@ -36,9 +43,11 @@
 
 #btnreg {
     color: #99CC00;
-    margin-top: 100px;
-    margin-left: 18px;
-    width: 110px;
+    margin-top: 110px;
+    margin-left: -30px;
+    // margin-right: 30px;
+    width: 100px;
     font-weight: 550; 
     font-size: 12px;
 }
+
