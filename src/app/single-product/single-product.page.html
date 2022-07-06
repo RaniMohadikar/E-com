@@ -1,0 +1,88 @@
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-slides  pager="true" [options]="slideopts">
+          <ion-slide *ngFor='let i of [1,2,3]'>
+            <img src="/assets/icon/product 1(1).jpg" class="front-image" alt="">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="product-para">Light Washed White</p>
+      </ion-col>    
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3" style="text-align: center;">   
+        <img src="/assets/icon/product 1(1).jpg" class="demo-image" alt="">   
+      </ion-col>
+      <ion-col size="3" style="text-align: center;">   
+        <img src="/assets/icon/product 1(2).jpg" class="demo-image" alt="">   
+      </ion-col >
+      <ion-col size="3" style="text-align: center;">   
+        <img src="/assets/icon/product 1(1).jpg" class="demo-image" alt="">   
+      </ion-col>
+      <ion-col size="3" style="text-align: center;">   
+        <img src="/assets/icon/product 1(2).jpg" class="demo-image" alt="">   
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <label for=""><ion-icon name="star" style="color: rgb(230, 230, 55);" ></ion-icon></label>
+      <label for="" style="font-size: 12px; margin-left: 5px;">4.9</label>
+      <label for="" style="font-size: 12px; margin-left: 5px; color: grey;">(120)</label>
+      <label for="" style="font-size: 12px; margin-left: 5px; color: red;">reviews</label>
+    </ion-row>
+
+    <ion-row>
+      <h4 class="product-heading">
+        Women White Raglan Sleeved Shirt
+      </h4>
+    </ion-row>
+
+    <ion-row class="product-price">
+      <h4>
+        $ 49,000 
+      </h4>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h4 class="select-size"> Select Size </h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="size">
+      <ion-col>
+        <label for="">S</label>
+        <label for="">M</label>
+        <label for="">L</label>
+        <label for="">XL</label>
+        <label for="">XXL</label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 15px;">
+      <ion-col size="5" >
+        <div style="border:  grey;border-radius: 8px; padding: 5px; background-color: rgb(224, 220, 220);text-align: center; width: 125px;">
+          <ion-icon name="remove-circle" (click)="decrement()" color="success" style="font-size: 30px;margin-right: 10px;"></ion-icon>
+          {{currentNumber}}
+          <ion-icon name="add-circle" (click)="increment()" color="success" style="font-size: 30px;margin-left: 10px;"></ion-icon>
+        </div>
+      </ion-col>
+
+      <ion-col size="7">
+        <ion-button color="success" style="margin-left: 10px;"><ion-icon name="bag" style=" font-size: 20px;margin-right: 3px;"></ion-icon>
+          Add to cart
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

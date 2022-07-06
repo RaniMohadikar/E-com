@@ -1,0 +1,69 @@
+.front-image {
+    border-radius: 0 0 12px 12px;
+    height:300px;
+    max-width:fit-content;
+}
+
+.product-para {
+    font-size: 10px;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+
+.demo-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 15px;
+}
+
+.demo-image:hover {
+    border: 2px solid #99CC00;
+}
+
+.product-heading {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.product-price {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 20px;  
+}
+
+.select-size {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 15px; 
+    margin-top: 0px;
+}
+
+.size label {
+    border: 1px solid rgb(236, 231, 231);
+    border-radius: 8px;
+    margin-left: 10px;
+    padding: 5px 10px 5px 10px;
+    color: rgb(43, 202, 43);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.size label:hover {
+    background-color:  #99CC00;
+    color: white;
+}
+
+.ion-item {
+    border: 1px solid green;
+}
+
+.buttons {
+    width: 8px;
+    height: 8px;
+    border: 1px solid grey;
+    background-color: grey;
+    padding: 10px;
+}
+
+
