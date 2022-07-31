@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'notification',
     loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
   },
+  {
+    path: 'single-product',
+    loadChildren: () => import('./single-product/single-product.module').then( m => m.SingleProductPageModule)
+  },
 
 
 ];
