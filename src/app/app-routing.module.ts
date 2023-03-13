@@ -17,10 +17,31 @@ const routes: Routes = [
   {
     path: 'resetpassword',
     loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
-  },  {
+  },
+  {
     path: 'access-location',
     loadChildren: () => import('./access-location/access-location.module').then( m => m.AccessLocationPageModule)
-  }
+  },
+    path: 'recover-password',
+    loadChildren: () => import('./recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
+},
+{
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+ 
+  },
+  {
+    path: 'front',
+    loadChildren: () => import('./front/front.module').then( m => m.FrontPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'single-product',
+    loadChildren: () => import('./single-product/single-product.module').then( m => m.SingleProductPageModule)
+  },
 
 
 ];
