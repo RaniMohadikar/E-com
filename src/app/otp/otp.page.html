@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Authentication</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form [formGroup] ="otpForm">
+  <ion-row>
+    <ion-col size="12"  >
+     <ion-img src="/assets/ankhub logo.png" class="img" ></ion-img><br>
+    </ion-col>
+    <ion-col size="12" >
+      <h1 class="head"><b>OTP Authentication</b></h1>
+      <p class="p">An Authentication code is send to Example@gmail.com</p>
+    </ion-col>
+    
+    <ion-col size="3">
+      <ion-item>
+        <ion-input type="text" placeholder="" formControlName="coln1" class="coln"></ion-input>
+        
+      </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-item>
+          <ion-input type="text" placeholder="" formControlName="coln2" class="coln"></ion-input>
+          
+        </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item>
+            <ion-input type="text" placeholder="" formControlName="coln3" class="coln"></ion-input>
+            
+          </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-input type="text" placeholder="" formControlName="coln4" class="coln"></ion-input>
+              
+            </ion-item>
+            </ion-col>
+    
+    
+  </ion-row><br>
+</form>
+  <ion-row>
+    <ion-col size="12" class="r2">
+      <span>Didn't receive the code? <a href="" class="a">Resend</a></span>
+    </ion-col>
+    <ion-col size="12">
+      <ion-button expand="block" class="regbtn" (click)="otp()" >Continue</ion-button>
+    </ion-col>
+  </ion-row>
+  
+  
+</ion-content>

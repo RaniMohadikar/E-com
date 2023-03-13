@@ -7,6 +7,21 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
+  },
+  {
+    path: 'resetpassword',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'access-location',
+    loadChildren: () => import('./access-location/access-location.module').then( m => m.AccessLocationPageModule)
+  },
     path: 'recover-password',
     loadChildren: () => import('./recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
 },
@@ -14,7 +29,8 @@ const routes: Routes = [
     path: 'registration',
     loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
  
-  },  {
+  },
+  {
     path: 'front',
     loadChildren: () => import('./front/front.module').then( m => m.FrontPageModule)
   },

@@ -1,0 +1,48 @@
+ion-header{
+    text-align: center;
+}
+.regbtn{
+    --background: #b3ca0f;
+    --color: #f5f6f9;
+    margin-top: 20px;
+    
+}
+.head{
+    text-align: left;
+    padding-left: 23px;
+}
+.p{
+    text-align: left;
+    color: gray;
+    padding-left: 23px;
+    font-size: smaller;
+
+}
+.img{
+    height: 100px;
+}
+.r2{
+    padding-top: 40px;
+    text-align: center;
+    font-size: small;
+}
+.r3{
+    text-align: center;
+    font-size: small;
+    padding-top: 40px;
+}
+
+.a{
+    color:  #b3ca0f;
+}
+ion-item{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 25px;
+    // border-style: groove;
+    
+    // height: 80%;
+    
+    
+    // border-left: 1px gray;
+}
