@@ -4,6 +4,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
@@ -22,13 +31,9 @@ const routes: Routes = [
     path: 'access-location',
     loadChildren: () => import('./access-location/access-location.module').then( m => m.AccessLocationPageModule)
   },
+  {
     path: 'recover-password',
     loadChildren: () => import('./recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
-},
-{
-    path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
- 
   },
   {
     path: 'front',
@@ -42,9 +47,8 @@ const routes: Routes = [
     path: 'single-product',
     loadChildren: () => import('./single-product/single-product.module').then( m => m.SingleProductPageModule)
   },
-
-
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
