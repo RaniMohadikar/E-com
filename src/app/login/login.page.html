@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="loginForm">
+    <ion-row>
+      <ion-col size="12">
+        <ion-img src="/assets/ankhub logo.png" class="img"></ion-img>
+      </ion-col>
+
+      <ion-col size="12">
+        <h1 class="head"><b>Welcome Back!</b></h1>
+        <p class="p">Sign in to continue to your account</p>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item>
+          <ion-input
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+            [ngClass]="{'is-invalid': valSubmit && loginForm.controls['email'].invalid}"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Password"
+            formControlName="password"
+            [ngClass]="{'is-invalid': valSubmit && loginForm.controls['password'].invalid}"
+          ></ion-input>
+          <ion-icon
+            slot="end"
+            [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+            (click)="togglePassword()"
+            style="cursor:pointer; color: gray;"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="forgot-col">
+        <a routerLink="/recover-password" class="a">Forgot Password?</a>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-button expand="block" class="loginbtn" (click)="login()">
+          Sign In
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <ion-row>
+    <ion-col size="12" class="r2">
+      <span>Don't have an account? <a routerLink="/registration" class="a">Register</a></span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12" class="r3">
+      <span><u>Or sign in with</u></span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="padding-top:10px; padding-bottom: 20px;">
+    <ion-col size="3">
+      <ion-button expand="block" class="btn1">
+        <img src="/assets/fb.png" alt="" style="height: 30px;">
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn2">
+        <img src="/assets/google.png" alt="" style="height: 25px;">
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn3">
+        <img src="/assets/Instagram-Circle.png" alt="" style="height: 25px;">
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block" class="btn4">
+        <img src="/assets/git.png" alt="" style="height: 25px;">
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
