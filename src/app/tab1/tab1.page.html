@@ -1,17 +1,191 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-grid class="header-grid">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="8">
+          <div class="location-wrap" (click)="navigate('/access-location')" style="cursor:pointer;">
+            <ion-icon name="location-outline" class="loc-icon"></ion-icon>
+            <div>
+              <div class="deliver-text">Deliver to</div>
+              <div class="city-text">{{deliveryCity}} &nbsp;<ion-icon name="chevron-down-outline"></ion-icon></div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="4" class="header-actions">
+          <ion-button fill="clear" color="light" routerLink="/notification">
+            <ion-icon name="notifications-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="light" routerLink="/cart" style="position:relative">
+            <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+            <ion-badge color="danger" class="cart-badge-header" *ngIf="cartCount > 0">{{cartCount}}</ion-badge>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-searchbar
+            placeholder="Search products, brands..."
+            class="home-search"
+            mode="md"
+            [value]="searchTerm"
+            (ionInput)="onSearch($event)"
+            (ionClear)="isSearching=false"
+          ></ion-searchbar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Search Results Overlay -->
+  <div class="search-overlay" *ngIf="isSearching">
+    <div class="no-results" *ngIf="searchResults.length === 0">
+      <ion-icon name="search-outline"></ion-icon>
+      <p>No products found for "{{searchTerm}}"</p>
+    </div>
+    <div class="search-item" *ngFor="let p of searchResults" (click)="openProduct(p)">
+      <div class="search-img" [style.background]="p.bgColor">
+        <ion-icon [name]="p.icon"></ion-icon>
+      </div>
+      <div class="search-info">
+        <p class="s-name">{{p.name}}</p>
+        <span class="s-price">₹{{p.price | number}}</span>
+        <span class="s-cat">{{p.category}}</span>
+      </div>
+      <button class="s-wish-btn" (click)="toggleWishlist(p, $event)">
+        <ion-icon [name]="isWishlisted(p.id) ? 'heart' : 'heart-outline'"
+                  [style.color]="isWishlisted(p.id) ? '#eb445a' : '#ccc'"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner-wrap" *ngIf="!isSearching">
+    <div class="banner-card">
+      <div class="banner-content">
+        <span class="banner-label">Summer Sale</span>
+        <span class="banner-title">Up to 60% Off!</span>
+        <ion-button size="small" class="shop-btn" (click)="navigate('/tabs/tab2')">Shop Now</ion-button>
+      </div>
+      <div class="banner-img-wrap">
+        <ion-icon name="shirt-outline" class="banner-product-icon"></ion-icon>
+      </div>
+    </div>
+    <div class="banner-dots">
+      <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+
+  <div *ngIf="!isSearching">
+    <!-- Quick Access -->
+    <ion-grid class="quick-access">
+      <ion-row class="ion-justify-content-around">
+        <ion-col size="3" *ngFor="let q of quickAccess" class="quick-item" (click)="navigate(q.route)">
+          <div class="quick-icon-wrap" [style.background]="q.bg">
+            <ion-icon [name]="q.icon" [style.color]="q.color"></ion-icon>
+          </div>
+          <span class="quick-label">{{q.name}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Popular Categories -->
+    <ion-grid class="section">
+      <ion-row class="section-header-row">
+        <ion-col><h2 class="section-title">Popular Categories</h2></ion-col>
+        <ion-col class="see-all-col">
+          <span class="see-all" routerLink="/tabs/tab2">See All</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" *ngFor="let cat of popularCategories" class="pop-cat-col" (click)="openCategory(cat.cat)">
+          <div class="pop-cat-wrap">
+            <div class="pop-cat-img" [style.background]="cat.bg">
+              <ion-icon [name]="cat.icon" [style.color]="cat.color"></ion-icon>
+            </div>
+            <span class="pop-cat-name">{{cat.name}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Flash Deals -->
+    <ion-grid class="section">
+      <ion-row class="section-header-row ion-align-items-center">
+        <ion-col><h2 class="section-title">Flash Deals</h2></ion-col>
+        <ion-col class="timer-col">
+          <div class="timer-wrap">
+            <div class="time-box">{{hours}}</div>
+            <span class="colon">:</span>
+            <div class="time-box">{{minutes}}</div>
+            <span class="colon">:</span>
+            <div class="time-box">{{seconds}}</div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" *ngFor="let p of flashProducts">
+          <div class="product-card" (click)="openProduct(p)">
+            <div class="product-img" [style.background]="p.bgColor">
+              <ion-icon [name]="p.icon"></ion-icon>
+              <div class="discount-tag">{{p.discount}}% OFF</div>
+              <button class="wish-heart" (click)="toggleWishlist(p, $event)">
+                <ion-icon [name]="isWishlisted(p.id) ? 'heart' : 'heart-outline'"
+                          [color]="isWishlisted(p.id) ? 'danger' : 'light'"></ion-icon>
+              </button>
+            </div>
+            <div class="product-info">
+              <p class="p-name">{{p.name}}</p>
+              <div class="p-price-row">
+                <span class="p-price">₹{{p.price | number}}</span>
+                <span class="p-orig">₹{{p.originalPrice | number}}</span>
+              </div>
+              <div class="p-rating">
+                <ion-icon name="star" color="warning"></ion-icon>
+                <span>{{p.rating}}</span>
+                <span class="p-reviews">({{p.reviews | number}})</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Featured Products -->
+    <ion-grid class="section">
+      <ion-row class="section-header-row">
+        <ion-col><h2 class="section-title">Featured Products</h2></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" *ngFor="let p of featuredProducts">
+          <div class="product-card" (click)="openProduct(p)">
+            <div class="product-img" [style.background]="p.bgColor">
+              <ion-icon [name]="p.icon"></ion-icon>
+              <div class="discount-tag">{{p.discount}}% OFF</div>
+              <button class="wish-heart" (click)="toggleWishlist(p, $event)">
+                <ion-icon [name]="isWishlisted(p.id) ? 'heart' : 'heart-outline'"
+                          [color]="isWishlisted(p.id) ? 'danger' : 'light'"></ion-icon>
+              </button>
+            </div>
+            <div class="product-info">
+              <p class="p-name">{{p.name}}</p>
+              <div class="p-price-row">
+                <span class="p-price">₹{{p.price | number}}</span>
+                <span class="p-orig">₹{{p.originalPrice | number}}</span>
+              </div>
+              <div class="p-rating">
+                <ion-icon name="star" color="warning"></ion-icon>
+                <span>{{p.rating}}</span>
+                <span class="p-reviews">({{p.reviews | number}})</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div style="height: 20px;"></div>
+  </div>
 </ion-content>

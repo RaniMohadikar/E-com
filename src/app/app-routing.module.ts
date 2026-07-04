@@ -47,6 +47,30 @@ const routes: Routes = [
     path: 'single-product',
     loadChildren: () => import('./single-product/single-product.module').then( m => m.SingleProductPageModule)
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then( m => m.OrdersPageModule)
+  },
+  {
+    path: 'wishlist',
+    loadChildren: () => import('./wishlist/wishlist.module').then( m => m.WishlistPageModule)
+  },
+  {
+    path: 'deals',
+    loadChildren: () => import('./deals/deals.module').then( m => m.DealsPageModule)
+  },
+  {
+    path: 'coupons',
+    loadChildren: () => import('./coupons/coupons.module').then( m => m.CouponsPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
 ];
 
 @NgModule({

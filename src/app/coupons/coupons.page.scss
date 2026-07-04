@@ -1,0 +1,261 @@
+ion-content {
+  --background: #f7f8fa;
+}
+
+ion-header ion-toolbar {
+  --background: #fff;
+  --color: #1a1a1a;
+  --border-color: #f0f0f0;
+}
+
+/* ── Header Banner ── */
+.coupon-banner {
+  background: linear-gradient(130deg, #FF6B02 0%, #ff9640 100%);
+  margin: 12px 14px;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .banner-ticket-icon {
+    font-size: 52px;
+    color: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  .banner-text {
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+    p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      margin: 0;
+    }
+  }
+}
+
+/* ── Tab Row ── */
+.tab-row {
+  display: flex;
+  gap: 8px;
+  padding: 0 14px 12px;
+
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    background: #fff;
+    border: 1.5px solid #e8e8e8;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &.active {
+      background: #FF6B02;
+      color: #fff;
+      border-color: #FF6B02;
+    }
+  }
+}
+
+/* ── Coupon Cards ── */
+.coupons-list {
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.coupon-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  min-height: 120px;
+}
+
+/* Left colored section */
+.coupon-left {
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 8px;
+
+  .coupon-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon { font-size: 22px; }
+  }
+
+  .discount-pill {
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+
+/* Dashed divider */
+.coupon-divider {
+  width: 18px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  position: relative;
+
+  .circle-top {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f7f8fa;
+    border: 2px solid #f0f0f0;
+    flex-shrink: 0;
+    margin-top: -8px;
+  }
+
+  .dash-line {
+    flex: 1;
+    width: 1.5px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #e0e0e0 0px,
+      #e0e0e0 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    margin: 4px 0;
+  }
+
+  .circle-bottom {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f7f8fa;
+    border: 2px solid #f0f0f0;
+    flex-shrink: 0;
+    margin-bottom: -8px;
+  }
+}
+
+/* Right content */
+.coupon-right {
+  flex: 1;
+  padding: 14px 14px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  .coupon-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+
+    .coupon-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 2px;
+    }
+
+    .coupon-cat {
+      font-size: 10px;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .code-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1.5px dashed #FF6B02;
+      border-radius: 8px;
+      padding: 4px 8px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+
+      &:active { background: #fff0e6; }
+
+      .code-text {
+        font-size: 12px;
+        font-weight: 800;
+        color: #FF6B02;
+        letter-spacing: 0.5px;
+      }
+
+      .copy-icon {
+        font-size: 13px;
+        color: #FF6B02;
+      }
+    }
+  }
+
+  .coupon-desc {
+    font-size: 11px;
+    color: #666;
+    margin: 0 0 8px;
+    line-height: 1.45;
+  }
+
+  .coupon-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+
+    .valid-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      ion-icon { font-size: 13px; color: #aaa; }
+      span { font-size: 10px; color: #aaa; }
+    }
+
+    .use-btn {
+      --background: #FF6B02;
+      --border-radius: 10px;
+      --box-shadow: none;
+      font-size: 11px;
+      font-weight: 700;
+      height: 30px;
+    }
+  }
+}
+
+/* ── Note ── */
+.min-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 14px 14px 0;
+  padding: 10px 12px;
+  background: #fff8e6;
+  border-radius: 10px;
+  border: 1px solid #ffe0a0;
+
+  ion-icon { font-size: 16px; color: #c09a00; flex-shrink: 0; margin-top: 1px; }
+  span { font-size: 11px; color: #7a6200; line-height: 1.5; }
+}

@@ -1,17 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      setting
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Account</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" routerLink="/cart" style="position:relative">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+        <ion-badge color="danger" class="cart-hdrbadge" *ngIf="cartCount > 0">{{cartCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- Profile Card -->
+  <div class="profile-card">
+    <!-- Avatar: uploaded photo OR initials bubble -->
+    <div class="profile-avatar" (click)="editProfile()">
+      <img *ngIf="user?.photo" [src]="user!.photo" class="profile-photo" alt="Profile" />
+      <div *ngIf="!user?.photo" class="avatar-initials">
+        {{(user?.fullName || 'G').charAt(0).toUpperCase()}}
+      </div>
+    </div>
+    <div class="profile-info">
+      <h2>{{user?.fullName || 'Loading...'}}</h2>
+      <p>{{user?.email || ''}}</p>
+      <p *ngIf="user?.phone" class="phone">
+        <ion-icon name="call-outline" style="font-size:12px; vertical-align:middle; margin-right:3px;"></ion-icon>
+        {{user?.phone}}
+      </p>
+    </div>
+    <ion-button fill="clear" class="edit-btn" (click)="editProfile()">
+      <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row" *ngIf="user">
+    <div class="stat-item">
+      <span class="stat-num">{{orderCount}}</span>
+      <span class="stat-label">Orders</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">{{wishlistCount}}</span>
+      <span class="stat-label">Wishlist</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">{{cartCount}}</span>
+      <span class="stat-label">In Cart</span>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <ion-list class="menu-list" lines="none">
+    <ion-item *ngFor="let item of menuItems" (click)="navigate(item.route)" class="menu-item" button detail>
+      <div class="menu-icon-wrap" [style.background]="item.bg" slot="start">
+        <ion-icon [name]="item.icon" [style.color]="item.color"></ion-icon>
+      </div>
+      <ion-label>
+        <h3>{{item.label}}</h3>
+      </ion-label>
+      <ion-badge *ngIf="item.badge && item.badge > 0" color="danger" slot="end">{{item.badge}}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <!-- Logout -->
+  <div class="logout-wrap">
+    <ion-button expand="block" fill="outline" color="danger" class="logout-btn" (click)="logout()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      Logout
+    </ion-button>
+  </div>
+
+  <div style="height: 20px;"></div>
 </ion-content>

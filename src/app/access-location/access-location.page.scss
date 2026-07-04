@@ -1,35 +1,327 @@
-ion-title {
-    text-align: center;
+ion-content {
+  --background: #f7f8fa;
 }
-.img-fluid{
-    // height: ;
-    padding-left: 55px;
-    padding-right: 55px;
-    
+
+ion-header ion-toolbar {
+  --background: #fff;
+  --color: #1a1a1a;
+  --border-color: #f0f0f0;
 }
-.card{
+
+/* ── Search Section ── */
+.search-section {
+  position: relative;
+  padding: 12px 14px 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 0 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: #FF6B02;
+  }
+
+  .search-icon {
+    font-size: 18px;
+    color: #aaa;
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+
+  .search-input {
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+    --padding-start: 0;
+    --background: transparent;
+    --color: #1a1a1a;
+    --placeholder-color: #bbb;
+    font-size: 14px;
+    flex: 1;
+  }
+}
+
+.search-results {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 64px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+  z-index: 100;
+  overflow: hidden;
+  max-height: 260px;
+  overflow-y: auto;
+
+  .search-result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:last-child { border-bottom: none; }
+    &:active { background: #fff0e6; }
+
+    .result-icon {
+      font-size: 18px;
+      color: #FF6B02;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    span {
+      font-size: 12px;
+      color: #333;
+      line-height: 1.45;
+    }
+  }
+}
+
+/* ── Map Container ── */
+.map-container {
+  margin: 14px 14px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+  position: relative;
+  background: #e0e0e0;
+
+  .map-iframe {
+    width: 100%;
+    height: 260px;
+    border: none;
+    display: block;
+  }
+
+  .map-actions-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #fff;
+
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+
+      ion-icon { font-size: 15px; }
+
+      &:active { opacity: 0.7; }
+    }
+
+    .open-map-btn {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .re-detect-btn {
+      background: #FF6B02;
+      color: #fff;
+    }
+  }
+}
+
+/* ── Permission Card ── */
+.permission-card {
+  margin: 24px 14px 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 20px 24px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+  text-align: center;
+
+  .permission-icon-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B02 0%, #ff9640 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    box-shadow: 0 6px 20px rgba(255,107,2,0.3);
+
+    .big-loc-icon {
+      font-size: 46px;
+      color: #fff;
+    }
+  }
+
+  .permission-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+  }
+
+  .permission-desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+    margin: 0 0 20px;
+  }
+
+  .permission-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    text-align: left;
+
+    .feat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #f7f8fa;
+      border-radius: 10px;
+
+      ion-icon { font-size: 20px; flex-shrink: 0; }
+      span { font-size: 13px; color: #444; font-weight: 500; }
+    }
+  }
+
+  .allow-btn {
+    --background: #FF6B02;
+    --background-activated: #e05e02;
+    --border-radius: 14px;
+    --box-shadow: 0 6px 18px rgba(255,107,2,0.35);
+    font-weight: 700;
+    font-size: 15px;
+    height: 52px;
+  }
+
+  .denied-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: #fff0f0;
+    border-radius: 10px;
+    border: 1px solid #fcc;
+    text-align: left;
+
+    ion-icon { font-size: 18px; color: #eb445a; flex-shrink: 0; margin-top: 1px; }
+    span { font-size: 12px; color: #eb445a; line-height: 1.45; }
+  }
+}
+
+/* ── Loading Card ── */
+.loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 14px;
+
+  ion-spinner { width: 48px; height: 48px; }
+
+  p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  span {
+    font-size: 13px;
+    color: #888;
     text-align: center;
-    padding-top: 4%;
-    padding-bottom: 8%;
+  }
+}
+
+/* ── Detected Address Card ── */
+.address-card {
+  margin: 14px 14px 0;
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+  .addr-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    ion-icon { font-size: 20px; }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+    }
+  }
+
+  .addr-body {
+    padding: 12px;
+    background: #f7f8fa;
     border-radius: 12px;
-}
-.regbtn{
-    --background: #b3ca0f;
-    --color: #f5f6f9;
-    margin-top: 20px;
-    padding-left: 35px;
-    padding-right: 35px; 
-    
-}
-.p{
-    font-size: smaller;
-    padding-left: 35px;
-    padding-right: 35px;
-}
-.h5{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    
-}
-ion-row{
-    padding-top: 70px;
+    margin-bottom: 14px;
+
+    .addr-full {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.55;
+      margin: 0 0 10px;
+    }
+
+    .addr-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+
+      .addr-tag {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        background: #fff0e6;
+        color: #FF6B02;
+        border-radius: 12px;
+      }
+    }
+
+    .coords-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+
+      ion-icon { font-size: 14px; color: #aaa; }
+      span { font-size: 11px; color: #aaa; font-family: monospace; }
+    }
+  }
+
+  .use-btn {
+    --background: #FF6B02;
+    --background-activated: #e05e02;
+    --border-radius: 14px;
+    --box-shadow: 0 4px 14px rgba(255,107,2,0.3);
+    font-weight: 700;
+    font-size: 14px;
+    height: 48px;
+  }
 }

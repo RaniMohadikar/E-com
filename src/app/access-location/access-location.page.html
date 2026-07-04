@@ -1,23 +1,138 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title >Location</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Delivery Location</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="primary" (click)="useThisLocation()" *ngIf="state === 'success'">
+        <b>Save</b>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <ion-row>
-    <ion-col>
-      <ion-card div class="card">
-        <img class="img-fluid" src="/assets/map.jpg"/>
-        <div class="card-title"><h5><b>Access Location</b></h5></div>
-        <p class="p">This app will access your location only while using the app</p>
-        <ion-button expand="block" class="regbtn" ><i class="bi bi-geo-alt"></i> Allow Access</ion-button>
-        <br><div class="card-subtitle"><a href="">Skip</a></div>
-    
-        
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  
+<ion-content>
 
+  <!-- ── Search Bar ── -->
+  <div class="search-section">
+    <div class="search-box">
+      <ion-icon name="search-outline" class="search-icon"></ion-icon>
+      <ion-input
+        placeholder="Search city, area, pincode..."
+        (ionInput)="onSearch($event)"
+        [value]="searchQuery"
+        class="search-input"
+      ></ion-input>
+    </div>
+
+    <!-- Search Results Dropdown -->
+    <div class="search-results" *ngIf="isSearching && searchResults.length > 0">
+      <div
+        class="search-result-item"
+        *ngFor="let r of searchResults"
+        (click)="selectSearchResult(r)"
+      >
+        <ion-icon name="location-outline" class="result-icon"></ion-icon>
+        <span>{{ r.display_name }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAP SECTION ── -->
+  <div class="map-container" *ngIf="state === 'success' && mapUrl">
+    <iframe
+      [src]="mapUrl"
+      class="map-iframe"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen
+    ></iframe>
+
+    <!-- Map pin overlay -->
+    <div class="map-actions-row">
+      <button class="open-map-btn" (click)="openInMaps()">
+        <ion-icon name="open-outline"></ion-icon>
+        Open in Maps
+      </button>
+      <button class="re-detect-btn" (click)="detectLocation()">
+        <ion-icon name="navigate-outline"></ion-icon>
+        Re-detect
+      </button>
+    </div>
+  </div>
+
+  <!-- ── IDLE / PERMISSION STATE ── -->
+  <div class="permission-card" *ngIf="state === 'idle' || state === 'denied'">
+    <div class="permission-icon-wrap">
+      <ion-icon name="location" class="big-loc-icon"></ion-icon>
+    </div>
+
+    <h2 class="permission-title">Allow Location Access</h2>
+    <p class="permission-desc">
+      We use your location to show relevant stores, faster delivery estimates,
+      and accurate shipping address.
+    </p>
+
+    <div class="permission-features">
+      <div class="feat-item">
+        <ion-icon name="flash-outline" color="warning"></ion-icon>
+        <span>Faster delivery estimation</span>
+      </div>
+      <div class="feat-item">
+        <ion-icon name="storefront-outline" color="primary"></ion-icon>
+        <span>Nearby stores & offers</span>
+      </div>
+      <div class="feat-item">
+        <ion-icon name="shield-checkmark-outline" color="success"></ion-icon>
+        <span>Used only while app is open</span>
+      </div>
+    </div>
+
+    <ion-button expand="block" class="allow-btn" (click)="detectLocation()">
+      <ion-icon name="navigate-outline" slot="start"></ion-icon>
+      Detect My Location
+    </ion-button>
+
+    <div *ngIf="state === 'denied'" class="denied-note">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <span>Location blocked — please enable it in browser settings, then try again.</span>
+    </div>
+  </div>
+
+  <!-- ── LOADING STATE ── -->
+  <div class="loading-card" *ngIf="state === 'loading'">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Detecting your location...</p>
+    <span>Please allow location access in the popup</span>
+  </div>
+
+  <!-- ── DETECTED ADDRESS ── -->
+  <div class="address-card" *ngIf="state === 'success'">
+    <div class="addr-header">
+      <ion-icon name="location" color="primary"></ion-icon>
+      <h3>Detected Address</h3>
+    </div>
+
+    <div class="addr-body">
+      <p class="addr-full">{{ displayAddr }}</p>
+      <div class="addr-tags" *ngIf="city || state_region || pincode">
+        <span class="addr-tag" *ngIf="city">{{ city }}</span>
+        <span class="addr-tag" *ngIf="state_region">{{ state_region }}</span>
+        <span class="addr-tag" *ngIf="pincode">{{ pincode }}</span>
+        <span class="addr-tag" *ngIf="country">{{ country }}</span>
+      </div>
+      <div class="coords-row" *ngIf="lat && lon">
+        <ion-icon name="navigate-circle-outline"></ion-icon>
+        <span>{{ lat | number:'1.4-4' }}°N, {{ lon | number:'1.4-4' }}°E</span>
+      </div>
+    </div>
+
+    <ion-button expand="block" class="use-btn" (click)="useThisLocation()">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      Deliver to This Location
+    </ion-button>
+  </div>
+
+  <div style="height: 24px;"></div>
 </ion-content>

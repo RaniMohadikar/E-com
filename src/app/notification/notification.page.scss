@@ -1,38 +1,58 @@
-.card {
-    margin-top: 30px;
-    height: auto;
-    width:auto;
+ion-header ion-toolbar {
+  --background: #fff;
+  --color: #1a1a1a;
 }
 
-.img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 120px;
-    height: 120px;
+ion-content {
+  --background: #f7f8fa;
 }
 
-.para {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+.notif-list {
+  padding: 12px 16px;
 }
 
-.title {
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 700;
-}
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 
-.skiptext {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
-    font-weight: 500;
-    margin-top: 10px;
-    margin-left: 49%;
-}
+  .notif-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 
-.btn {
-    margin-top: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    ion-icon { font-size: 22px; }
+  }
+
+  .notif-content {
+    flex: 1;
+
+    .notif-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+      margin: 0 0 3px;
+    }
+
+    .notif-desc {
+      font-size: 12px;
+      color: #666;
+      margin: 0 0 4px;
+      line-height: 1.4;
+    }
+
+    .notif-time {
+      font-size: 11px;
+      color: #aaa;
+    }
+  }
 }

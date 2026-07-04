@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="selectedStatus" class="order-segment" scrollable>
+    <ion-segment-button value="All"><ion-label>All</ion-label></ion-segment-button>
+    <ion-segment-button value="Processing"><ion-label>Processing</ion-label></ion-segment-button>
+    <ion-segment-button value="Shipped"><ion-label>Shipped</ion-label></ion-segment-button>
+    <ion-segment-button value="Delivered"><ion-label>Delivered</ion-label></ion-segment-button>
+    <ion-segment-button value="Cancelled"><ion-label>Cancelled</ion-label></ion-segment-button>
+  </ion-segment>
+
+  <div class="orders-list">
+    <div class="order-card" *ngFor="let order of filteredOrders">
+      <div class="order-header">
+        <div class="order-img" [style.background]="order.bgColor">
+          <ion-icon [name]="order.icon"></ion-icon>
+        </div>
+        <div class="order-meta">
+          <p class="order-name">{{getFirstItemName(order)}}</p>
+          <p class="order-id">Order #{{order.id}} · {{getTotalItems(order)}} item(s)</p>
+          <p class="order-date">{{order.date}}</p>
+        </div>
+        <div class="order-right">
+          <span class="order-price">₹{{order.total | number}}</span>
+          <span class="status-badge" [class]="order.status.toLowerCase()">{{order.status}}</span>
+        </div>
+      </div>
+      <div class="order-footer">
+        <ion-button fill="clear" size="small" color="primary" class="view-btn">
+          View Details →
+        </ion-button>
+        <ion-button fill="clear" size="small" color="medium" class="view-btn" *ngIf="order.status === 'Delivered'">
+          Write Review
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-orders" *ngIf="filteredOrders.length === 0">
+    <ion-icon name="receipt-outline"></ion-icon>
+    <p>No {{selectedStatus === 'All' ? '' : selectedStatus}} orders found</p>
+    <ion-button routerLink="/tabs/tab1" fill="outline" color="primary" size="small">Start Shopping</ion-button>
+  </div>
+
+  <div style="height: 20px;"></div>
+</ion-content>

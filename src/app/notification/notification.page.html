@@ -1,31 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Notification</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
- <div class="row">
-  <div class="col" size="12" size-xl="6" offset-xl="5">
-    <ion-card class="card" >
-      <ion-card-header>
-        <img src="/assets/icon/—Pngtree—vector notification icon_4260841.png" class="img" alt="">
-        <ion-card-title class="title">Notification</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-text color="info" class="para">
-          <p>Stay notified about new products updates, discount product and order details</p>
-        </ion-text>
-        
-        <ion-button expand="block" color="success" class="btn">Enable Notification</ion-button>
-        <a href="" class="skiptext">Skip</a>
-
-        
-      </ion-card-content>
-    </ion-card>
+  <div class="notif-list">
+    <div class="notif-item" *ngFor="let n of notifications">
+      <div class="notif-icon" [style.background]="n.bg">
+        <ion-icon [name]="n.icon" [style.color]="n.color"></ion-icon>
+      </div>
+      <div class="notif-content">
+        <p class="notif-title">{{n.title}}</p>
+        <p class="notif-desc">{{n.desc}}</p>
+        <span class="notif-time">{{n.time}}</span>
+      </div>
+    </div>
   </div>
- </div>
-
 </ion-content>

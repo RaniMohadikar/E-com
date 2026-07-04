@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Wishlist</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="dark" routerLink="/cart">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Empty State -->
+  <div class="empty-wishlist" *ngIf="products.length === 0">
+    <div class="empty-icon-wrap">
+      <ion-icon name="heart-outline"></ion-icon>
+    </div>
+    <h3>Your Wishlist is Empty</h3>
+    <p>Save products you love by tapping the heart icon on any product</p>
+    <ion-button routerLink="/tabs/tab1" class="explore-btn" expand="block">
+      Explore Products
+    </ion-button>
+  </div>
+
+  <!-- Wishlist Grid -->
+  <div class="wishlist-grid" *ngIf="products.length > 0">
+
+    <div class="wish-count">
+      <ion-icon name="heart" color="danger"></ion-icon>
+      <span>{{products.length}} item{{products.length > 1 ? 's' : ''}} saved</span>
+    </div>
+
+    <div class="wish-cards">
+      <div class="wish-card" *ngFor="let p of products" (click)="openProduct(p)">
+
+        <!-- Remove Heart Button -->
+        <button class="remove-heart" (click)="removeFromWishlist(p, $event)">
+          <ion-icon name="heart" color="danger"></ion-icon>
+        </button>
+
+        <!-- Product Image -->
+        <div class="wish-img" [style.background]="p.bgColor">
+          <ion-icon [name]="p.icon"></ion-icon>
+          <div class="disc-tag">{{p.discount}}% OFF</div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="wish-info">
+          <p class="wish-name">{{p.name}}</p>
+
+          <div class="wish-price-row">
+            <span class="wish-price">₹{{p.price | number}}</span>
+            <span class="wish-orig">₹{{p.originalPrice | number}}</span>
+          </div>
+
+          <div class="wish-rating">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <span>{{p.rating}}</span>
+            <span class="wish-rev">({{p.reviews | number}})</span>
+          </div>
+
+          <!-- Add to Cart -->
+          <ion-button
+            expand="block"
+            size="small"
+            class="add-cart-btn"
+            (click)="addToCart(p, $event)"
+          >
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            Add to Cart
+          </ion-button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div style="height: 20px;"></div>
+</ion-content>
