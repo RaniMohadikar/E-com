@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Coupons</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="dark" routerLink="/cart">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Header Banner -->
+  <div class="coupon-banner">
+    <ion-icon name="ticket" class="banner-ticket-icon"></ion-icon>
+    <div class="banner-text">
+      <h2>{{coupons.length}} Coupons Available</h2>
+      <p>Tap any coupon to copy code &amp; save more!</p>
+    </div>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="tab-row">
+    <div class="tab-btn" [class.active]="selectedTab === 'all'" (click)="selectedTab = 'all'">
+      All ({{coupons.length}})
+    </div>
+    <div class="tab-btn" [class.active]="selectedTab === 'flat'" (click)="selectedTab = 'flat'">
+      Flat Off
+    </div>
+    <div class="tab-btn" [class.active]="selectedTab === 'percent'" (click)="selectedTab = 'percent'">
+      % Off
+    </div>
+  </div>
+
+  <!-- Coupons List -->
+  <div class="coupons-list">
+
+    <div class="coupon-card" *ngFor="let c of filteredCoupons">
+
+      <!-- Left color strip + icon -->
+      <div class="coupon-left" [style.background]="c.bgColor">
+        <div class="coupon-icon-wrap">
+          <ion-icon [name]="c.icon" [style.color]="c.iconColor"></ion-icon>
+        </div>
+        <div class="discount-pill" [style.color]="c.iconColor">
+          {{discountLabel(c)}}
+        </div>
+      </div>
+
+      <!-- Dashed divider with circles -->
+      <div class="coupon-divider">
+        <div class="circle-top"></div>
+        <div class="dash-line"></div>
+        <div class="circle-bottom"></div>
+      </div>
+
+      <!-- Right content -->
+      <div class="coupon-right">
+        <div class="coupon-top-row">
+          <div>
+            <h3 class="coupon-title">{{c.title}}</h3>
+            <span class="coupon-cat">{{c.category}}</span>
+          </div>
+          <div class="code-box" (click)="copyCoupon(c)">
+            <span class="code-text">{{c.code}}</span>
+            <ion-icon name="copy-outline" class="copy-icon"></ion-icon>
+          </div>
+        </div>
+
+        <p class="coupon-desc">{{c.description}}</p>
+
+        <div class="coupon-footer">
+          <div class="valid-row">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>Valid till: {{c.validTill}}</span>
+          </div>
+          <ion-button size="small" class="use-btn" (click)="applyAndGoToCart(c)">
+            Use Now
+          </ion-button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Min order note -->
+  <div class="min-note">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <span>Coupons are applied automatically at checkout. Min order amount applies.</span>
+  </div>
+
+  <div style="height: 20px;"></div>
+</ion-content>

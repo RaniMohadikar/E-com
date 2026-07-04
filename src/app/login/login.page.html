@@ -1,95 +1,106 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="white-bg">
 
-<ion-content>
+  <div class="login-wrap">
 
-  <form [formGroup]="loginForm">
-    <ion-row>
-      <ion-col size="12">
-        <ion-img src="/assets/ankhub logo.png" class="img"></ion-img>
-      </ion-col>
+    <!-- Logo & Branding -->
+    <div class="brand-section">
+      <div class="brand-logo">
+        <ion-icon name="bag-handle" class="brand-icon"></ion-icon>
+      </div>
+      <h1 class="brand-name">ShopEasy</h1>
+      <p class="brand-sub">Your one-stop shopping destination</p>
+    </div>
 
-      <ion-col size="12">
-        <h1 class="head"><b>Welcome Back!</b></h1>
-        <p class="p">Sign in to continue to your account</p>
-      </ion-col>
+    <!-- Welcome Text -->
+    <div class="welcome-section">
+      <h2 class="welcome-title">Welcome Back!</h2>
+      <p class="welcome-sub">Sign in to continue to your account</p>
+    </div>
 
-      <ion-col size="12">
-        <ion-item>
+    <form [formGroup]="loginForm">
+
+      <!-- Email Field -->
+      <div class="input-group">
+        <div class="input-label">Email Address</div>
+        <div class="input-wrap" [class.invalid]="valSubmit && loginForm.controls['email'].invalid">
+          <ion-icon name="mail-outline" class="field-icon"></ion-icon>
           <ion-input
             type="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             formControlName="email"
-            [ngClass]="{'is-invalid': valSubmit && loginForm.controls['email'].invalid}"
           ></ion-input>
-        </ion-item>
-      </ion-col>
+        </div>
+        <p class="field-error" *ngIf="valSubmit && loginForm.controls['email'].invalid">
+          Please enter a valid email
+        </p>
+      </div>
 
-      <ion-col size="12">
-        <ion-item>
+      <!-- Password Field -->
+      <div class="input-group">
+        <div class="input-label">Password</div>
+        <div class="input-wrap" [class.invalid]="valSubmit && loginForm.controls['password'].invalid">
+          <ion-icon name="lock-closed-outline" class="field-icon"></ion-icon>
           <ion-input
             [type]="showPassword ? 'text' : 'password'"
-            placeholder="Password"
+            placeholder="Enter your password"
             formControlName="password"
-            [ngClass]="{'is-invalid': valSubmit && loginForm.controls['password'].invalid}"
           ></ion-input>
           <ion-icon
-            slot="end"
             [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
             (click)="togglePassword()"
-            style="cursor:pointer; color: gray;"
+            class="eye-icon"
           ></ion-icon>
-        </ion-item>
-      </ion-col>
+        </div>
+        <p class="field-error" *ngIf="valSubmit && loginForm.controls['password'].invalid">
+          Password is required
+        </p>
+      </div>
 
-      <ion-col size="12" class="forgot-col">
-        <a routerLink="/recover-password" class="a">Forgot Password?</a>
-      </ion-col>
+      <!-- Forgot Password -->
+      <div class="forgot-row">
+        <span class="forgot-link">Forgot Password?</span>
+      </div>
 
-      <ion-col size="12">
-        <ion-button expand="block" class="loginbtn" (click)="login()">
-          Sign In
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
+      <!-- Error Message -->
+      <div class="login-error" *ngIf="loginError">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{ loginError }}
+      </div>
 
-  <ion-row>
-    <ion-col size="12" class="r2">
-      <span>Don't have an account? <a routerLink="/registration" class="a">Register</a></span>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col size="12" class="r3">
-      <span><u>Or sign in with</u></span>
-    </ion-col>
-  </ion-row>
-
-  <ion-row style="padding-top:10px; padding-bottom: 20px;">
-    <ion-col size="3">
-      <ion-button expand="block" class="btn1">
-        <img src="/assets/fb.png" alt="" style="height: 30px;">
+      <!-- Sign In Button -->
+      <ion-button expand="block" class="sign-in-btn" (click)="login()">
+        Sign In
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
       </ion-button>
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn2">
-        <img src="/assets/google.png" alt="" style="height: 25px;">
-      </ion-button>
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn3">
-        <img src="/assets/Instagram-Circle.png" alt="" style="height: 25px;">
-      </ion-button>
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn4">
-        <img src="/assets/git.png" alt="" style="height: 25px;">
-      </ion-button>
-    </ion-col>
-  </ion-row>
+
+    </form>
+
+    <!-- Divider -->
+    <div class="or-divider">
+      <span class="divider-line"></span>
+      <span class="divider-text">Or sign in with</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="social-row">
+      <button class="social-btn">
+        <img src="/assets/google.png" alt="Google" style="height:22px;">
+      </button>
+      <button class="social-btn">
+        <img src="/assets/fb.png" alt="Facebook" style="height:22px;">
+      </button>
+      <button class="social-btn">
+        <img src="/assets/git.png" alt="GitHub" style="height:22px;">
+      </button>
+    </div>
+
+    <!-- Register Link -->
+    <div class="register-row">
+      <span class="reg-text">Don't have an account?</span>
+      <a routerLink="/registration" class="reg-link">Create Account</a>
+    </div>
+
+  </div>
 
 </ion-content>

@@ -1,1 +1,38 @@
+.custom-tab-bar {
+  --background: #ffffff;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 -3px 14px rgba(0,0,0,0.07);
+  --min-height: 58px;
 
+  ion-tab-button {
+    --color: #b0b0b0;
+    --color-selected: #FF6B02;
+
+    ion-icon {
+      font-size: 23px;
+    }
+
+    ion-label {
+      font-size: 10px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    &.tab-selected {
+      ion-icon, ion-label { color: #FF6B02; }
+    }
+  }
+}
+
+.cart-badge {
+  position: absolute;
+  top: 5px;
+  right: 18px;
+  font-size: 10px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 10;
+}

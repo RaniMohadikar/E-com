@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Empty Cart -->
+  <div class="empty-cart" *ngIf="cartService.items.length === 0">
+    <ion-icon name="cart-outline"></ion-icon>
+    <h3>Your cart is empty</h3>
+    <p>Add items to get started</p>
+    <ion-button routerLink="/tabs/tab1" color="primary" shape="round">Shop Now</ion-button>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-items" *ngIf="cartService.items.length > 0">
+    <div class="cart-item" *ngFor="let item of cartService.items">
+      <div class="item-img" [style.background]="item.bgColor">
+        <ion-icon [name]="item.icon"></ion-icon>
+      </div>
+      <div class="item-details">
+        <p class="item-name">{{item.name}}</p>
+        <span class="item-color">Color: {{item.color}}</span>
+        <div class="item-bottom">
+          <span class="item-price">₹{{item.price | number}}</span>
+          <div class="qty-ctrl">
+            <button class="qty-btn" (click)="cartService.decrement(item.id)">−</button>
+            <span>{{item.quantity}}</span>
+            <button class="qty-btn" (click)="cartService.increment(item.id)">+</button>
+          </div>
+        </div>
+      </div>
+      <ion-button fill="clear" color="danger" class="remove-btn" (click)="cartService.removeItem(item.id)">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Coupon -->
+    <div class="coupon-section">
+      <ion-item class="coupon-input" lines="none">
+        <ion-icon name="ticket-outline" slot="start" color="primary"></ion-icon>
+        <ion-input placeholder="Enter coupon code (e.g. SAVE100)" [(ngModel)]="couponCode"></ion-input>
+        <ion-button slot="end" fill="clear" color="primary" (click)="applyCoupon()">Apply</ion-button>
+      </ion-item>
+      <p class="coupon-success" *ngIf="couponSuccess">✅ {{couponSuccess}}</p>
+      <p class="coupon-error" *ngIf="couponError">❌ {{couponError}}</p>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Subtotal ({{cartService.items.length}} items)</span>
+        <span>₹{{cartService.getSubtotal() | number}}</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span class="free">FREE</span>
+      </div>
+      <div class="summary-row" *ngIf="discount > 0">
+        <span>Discount</span>
+        <span class="discount">-₹{{discount | number}}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>₹{{cartService.getSubtotal() - discount | number}}</span>
+      </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+  </div>
+</ion-content>
+
+<!-- Checkout Footer -->
+<ion-footer *ngIf="cartService.items.length > 0" class="checkout-footer">
+  <div class="footer-content">
+    <div class="footer-total">
+      <span class="footer-total-label">Total</span>
+      <span class="footer-total-amount">₹{{cartService.getSubtotal() - discount | number}}</span>
+    </div>
+    <ion-button color="primary" class="checkout-btn" expand="block" (click)="checkout()">
+      Place Order
+      <ion-icon name="arrow-forward" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+</ion-footer>

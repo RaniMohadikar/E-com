@@ -1,0 +1,240 @@
+ion-content {
+  --background: #f7f8fa;
+}
+
+ion-header ion-toolbar {
+  --background: #fff;
+  --color: #1a1a1a;
+  --border-color: #f0f0f0;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 12px;
+
+  ion-icon {
+    font-size: 80px;
+    color: #ddd;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+  }
+}
+
+.cart-items {
+  padding: 12px 16px 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  position: relative;
+
+  .item-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 36px;
+      color: rgba(255,255,255,0.6);
+    }
+  }
+
+  .item-details {
+    flex: 1;
+    min-width: 0;
+
+    .item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+      margin: 0 0 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.3;
+    }
+
+    .item-color {
+      font-size: 11px;
+      color: #888;
+    }
+
+    .item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+
+      .item-price {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      .qty-ctrl {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f5f5f5;
+        border-radius: 20px;
+        padding: 2px 8px;
+
+        .qty-btn {
+          background: none;
+          border: none;
+          font-size: 18px;
+          font-weight: 700;
+          color: #FF6B02;
+          cursor: pointer;
+          padding: 0 2px;
+          line-height: 1;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 700;
+          color: #222;
+          min-width: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .remove-btn {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    --color: #eb445a;
+    font-size: 18px;
+  }
+}
+
+/* Coupon */
+.coupon-section {
+  margin-bottom: 12px;
+
+  .coupon-input {
+    --background: #fff;
+    border: 1.5px dashed #FF6B02;
+    border-radius: 12px;
+    --padding-start: 12px;
+    --inner-padding-end: 4px;
+  }
+}
+
+/* Order Summary */
+.order-summary {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 12px;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+
+    .free { color: #2dd36f; font-weight: 600; }
+    .discount { color: #2dd36f; font-weight: 600; }
+  }
+
+  .divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 8px 0 10px;
+  }
+
+  .total-row {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+  }
+}
+
+.coupon-success {
+  font-size: 12px;
+  color: #2dd36f;
+  margin: 4px 12px 0;
+  font-weight: 500;
+}
+
+.coupon-error {
+  font-size: 12px;
+  color: #eb445a;
+  margin: 4px 12px 0;
+  font-weight: 500;
+}
+
+/* Footer */
+.checkout-footer {
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  padding: 10px 16px;
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .footer-total {
+      display: flex;
+      flex-direction: column;
+
+      .footer-total-label {
+        font-size: 11px;
+        color: #888;
+      }
+
+      .footer-total-amount {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
+      }
+    }
+
+    .checkout-btn {
+      flex: 1;
+      --background: #FF6B02;
+      --border-radius: 12px;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,75 +1,117 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registration Page</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="white-bg">
 
-<ion-content>
-  
-  <form [formGroup] ="regForm">
-  <ion-row>
-    <ion-col size="12"  >
-     <ion-img src="/assets/ankhub logo.png" class="img" ></ion-img><br>
-    </ion-col>
-    <ion-col size="12" >
-      <h1 class="head"><b>Create a New Account</b></h1>
-      <p class="p">Please put your information Below to create a new account for using app</p>
-    </ion-col>
-    
-    <ion-col size="12">
-      <ion-item>
-        <ion-input type="text" placeholder="Full Name" formControlName="fullName"
-        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['fullName'].invalid}"
-        ></ion-input>
-        
-      </ion-item>
-      </ion-col>
-    <ion-col size="12">
-      <ion-item>
-        <ion-input type="email" placeholder="Email" formControlName="email"
-        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['email'].invalid}"
-        ></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col size="12">
-      <ion-item>
-        <ion-input type="Password" placeholder="Password" formControlName="passWord"
-        [ngClass]="{'is-invalid':valSubmit==true && regForm.controls['passWord'].invalid}"
-        
-        ></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col size="12">
-      <ion-button expand="block" class="regbtn" (click)="reg()" >Register Now</ion-button>
-    </ion-col>
-  </ion-row><br>
-</form>
-  <ion-row>
-    <ion-col size="12" class="r2">
-      <span>Already have an account? <a href="" class="a">Join Now</a></span>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12" class="r3">
-      <span><u>Or sign in with</u> </span>
-    </ion-col>
-  </ion-row>
-  <ion-row style="padding-top:10px ;padding-bottom: 20px;">
-    <ion-col size="3">
-      <ion-button expand="block" class="btn1" ><img src="/assets/fb.png" alt="" style="height: 30px;"></ion-button>
+  <div class="reg-wrap">
 
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn2" ><img src="/assets/google.png" alt="" style="height: 25px;"></ion-button>
-      
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn3" ><img src="/assets/Instagram-Circle.png" alt=""style="height: 25px;"></ion-button>
+    <!-- Back to Login -->
+    <div class="back-row">
+      <ion-button fill="clear" color="dark" routerLink="/login">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Back
+      </ion-button>
+    </div>
 
-    </ion-col>
-    <ion-col size="3">
-      <ion-button expand="block" class="btn4" ><img src="/assets/git.png" alt=""style="height: 25px;" ></ion-button>
+    <!-- Header -->
+    <div class="reg-header">
+      <div class="reg-logo">
+        <ion-icon name="bag-handle" class="reg-logo-icon"></ion-icon>
+      </div>
+      <h2 class="reg-title">Create Account</h2>
+      <p class="reg-sub">Fill in your details to get started</p>
+    </div>
 
-    </ion-col>
-  </ion-row>
+    <form [formGroup]="regForm">
+
+      <!-- Full Name -->
+      <div class="input-group">
+        <div class="input-label">Full Name</div>
+        <div class="input-wrap" [class.invalid]="valSubmit && regForm.controls['fullName'].invalid">
+          <ion-icon name="person-outline" class="field-icon"></ion-icon>
+          <ion-input
+            type="text"
+            placeholder="Enter your full name"
+            formControlName="fullName"
+          ></ion-input>
+        </div>
+        <p class="field-error" *ngIf="valSubmit && regForm.controls['fullName'].invalid">Full name is required</p>
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <div class="input-label">Email Address</div>
+        <div class="input-wrap" [class.invalid]="valSubmit && regForm.controls['email'].invalid">
+          <ion-icon name="mail-outline" class="field-icon"></ion-icon>
+          <ion-input
+            type="email"
+            placeholder="Enter your email"
+            formControlName="email"
+          ></ion-input>
+        </div>
+        <p class="field-error" *ngIf="valSubmit && regForm.controls['email'].invalid">Please enter a valid email</p>
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <div class="input-label">Password</div>
+        <div class="input-wrap" [class.invalid]="valSubmit && regForm.controls['passWord'].invalid">
+          <ion-icon name="lock-closed-outline" class="field-icon"></ion-icon>
+          <ion-input
+            type="password"
+            placeholder="At least 6 characters"
+            formControlName="passWord"
+          ></ion-input>
+        </div>
+        <p class="field-error" *ngIf="valSubmit && regForm.controls['passWord'].invalid">
+          Password must be at least 6 characters
+        </p>
+      </div>
+
+      <!-- Register Error -->
+      <div class="reg-error" *ngIf="registerError">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{ registerError }}
+      </div>
+
+      <!-- Terms -->
+      <p class="terms-text">
+        By creating an account, you agree to our
+        <span class="terms-link">Terms of Service</span> &amp;
+        <span class="terms-link">Privacy Policy</span>
+      </p>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" class="reg-btn" (click)="reg()">
+        Create Account
+        <ion-icon name="checkmark-circle-outline" slot="end"></ion-icon>
+      </ion-button>
+
+    </form>
+
+    <!-- Divider -->
+    <div class="or-divider">
+      <span class="divider-line"></span>
+      <span class="divider-text">Or sign up with</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="social-row">
+      <button class="social-btn">
+        <img src="/assets/google.png" alt="Google" style="height:22px;">
+      </button>
+      <button class="social-btn">
+        <img src="/assets/fb.png" alt="Facebook" style="height:22px;">
+      </button>
+      <button class="social-btn">
+        <img src="/assets/git.png" alt="GitHub" style="height:22px;">
+      </button>
+    </div>
+
+    <!-- Login Link -->
+    <div class="login-link-row">
+      <span class="login-text">Already have an account?</span>
+      <a routerLink="/login" class="login-link">Sign In</a>
+    </div>
+
+  </div>
+
 </ion-content>

@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="primary" (click)="saveProfile()" [disabled]="isSaving">
+        <b>Save</b>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="white-bg">
+
+  <!-- Hidden file input -->
+  <input
+    type="file"
+    id="photo-input"
+    accept="image/*"
+    style="display:none"
+    (change)="onFileSelected($event)"
+  />
+
+  <!-- Profile Photo Section -->
+  <div class="photo-section">
+    <div class="photo-wrap" (click)="pickPhoto()">
+      <!-- User photo or initials -->
+      <img *ngIf="photo" [src]="photo" class="user-photo" alt="Profile" />
+      <div *ngIf="!photo" class="default-avatar">
+        <span class="avatar-initial">{{(fullName || 'U').charAt(0).toUpperCase()}}</span>
+      </div>
+      <!-- Camera overlay -->
+      <div class="camera-overlay">
+        <ion-icon name="camera"></ion-icon>
+      </div>
+    </div>
+    <p class="photo-hint">Tap to change profile photo</p>
+  </div>
+
+  <!-- Form Fields -->
+  <div class="form-section">
+
+    <div class="field-group">
+      <label class="field-label">
+        <ion-icon name="person-outline"></ion-icon>
+        Full Name
+      </label>
+      <div class="field-wrap">
+        <ion-input
+          type="text"
+          placeholder="Enter your full name"
+          [(ngModel)]="fullName"
+          class="field-input"
+        ></ion-input>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">
+        <ion-icon name="mail-outline"></ion-icon>
+        Email Address
+      </label>
+      <div class="field-wrap">
+        <ion-input
+          type="email"
+          placeholder="Enter your email"
+          [(ngModel)]="email"
+          class="field-input"
+        ></ion-input>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">
+        <ion-icon name="call-outline"></ion-icon>
+        Phone Number
+      </label>
+      <div class="field-wrap">
+        <ion-input
+          type="tel"
+          placeholder="Enter your phone number"
+          [(ngModel)]="phone"
+          class="field-input"
+        ></ion-input>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Info Note -->
+  <div class="info-note">
+    <ion-icon name="shield-checkmark-outline" color="success"></ion-icon>
+    <span>Your information is stored securely on this device.</span>
+  </div>
+
+  <!-- Save Button -->
+  <div class="save-section">
+    <ion-button expand="block" class="save-btn" (click)="saveProfile()" [disabled]="isSaving">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      {{ isSaving ? 'Saving...' : 'Save Changes' }}
+    </ion-button>
+  </div>
+
+  <div style="height: 30px;"></div>
+</ion-content>

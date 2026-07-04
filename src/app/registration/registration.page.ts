@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,42 +9,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage implements OnInit {
-
-  
-
- 
-  regDetails:any=[];
+  regForm: FormGroup;
   valSubmit = false;
-    regForm:FormGroup
-  
-    constructor(private formBuilder:FormBuilder) {
-      this.regForm = formBuilder.group({
-        fullName:['',Validators.required],
-        email:['',[Validators.required,Validators.email]],
-        passWord:['',Validators.required]
-      });
-     }
-  
-    ngOnInit() {
-    }
-    reg(){
-      // this.regDetails.push(this.regForm.value)
-      // localStorage.setItem('REG_DETAILS',JSON.stringify(this.regDetails));
-      // console.log('Form',this.regForm.value);
-      this.valSubmit=true;
-      if(this.regForm.valid==true){
-        this.regDetails.push(this.regForm.value)
-        localStorage.setItem('REGDETAILS', JSON.stringify(this.regDetails));
-        this.clear();
-        console.log(' reg details - ', this.regForm.controls)
-  
-      }else{
-        console.log('error message');
-      }
-  
-  
-    }
-    clear(){
+  registerError = '';
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.regForm = this.formBuilder.group({
+      fullName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      passWord: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  ngOnInit() {}
+
+  reg() {
+    this.valSubmit = true;
+    this.registerError = '';
+    if (this.regForm.invalid) return;
+
+    const result = this.authService.register(this.regForm.value);
+    if (result.success) {
       this.regForm.reset();
+      this.router.navigateByUrl('/login');
+    } else {
+      this.registerError = result.message;
     }
+  }
 }

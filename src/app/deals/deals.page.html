@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Today's Deals</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="dark" routerLink="/cart">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Banner -->
+  <div class="deals-banner">
+    <div class="banner-left">
+      <p class="banner-tag">Limited Time Offers</p>
+      <h2 class="banner-title">Mega Sale<br><span>Up to 60% Off</span></h2>
+      <p class="banner-sub">{{filteredDeals.length}} deals available</p>
+    </div>
+    <div class="banner-icon-wrap">
+      <ion-icon name="pricetag"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Filter Chips -->
+  <div class="filter-row">
+    <div
+      class="filter-chip"
+      *ngFor="let f of filters"
+      [class.active]="selectedFilter === f.value"
+      (click)="applyFilter(f.value)"
+    >{{f.label}}</div>
+
+    <div class="sort-wrap">
+      <ion-select
+        value="discount"
+        interface="popover"
+        placeholder="Sort"
+        (ionChange)="onSortChange($event)"
+        class="sort-select"
+      >
+        <ion-select-option value="discount">Highest Discount</ion-select-option>
+        <ion-select-option value="price_low">Price: Low to High</ion-select-option>
+        <ion-select-option value="rating">Top Rated</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <!-- Deals Count -->
+  <div class="deals-count">
+    <span>Showing <b>{{filteredDeals.length}}</b> deals</span>
+  </div>
+
+  <!-- Deals List -->
+  <div class="deals-list">
+    <div class="deal-card" *ngFor="let p of filteredDeals" (click)="openProduct(p)">
+
+      <!-- Product Image -->
+      <div class="deal-img" [style.background]="p.bgColor">
+        <ion-icon [name]="p.icon"></ion-icon>
+
+        <!-- Discount Badge -->
+        <div class="big-discount">{{p.discount}}% OFF</div>
+
+        <!-- Wishlist -->
+        <button class="deal-wish" (click)="toggleWishlist(p, $event)">
+          <ion-icon [name]="isWishlisted(p.id) ? 'heart' : 'heart-outline'"
+                    [color]="isWishlisted(p.id) ? 'danger' : 'light'"></ion-icon>
+        </button>
+      </div>
+
+      <!-- Product Info -->
+      <div class="deal-info">
+        <div class="deal-meta">
+          <p class="deal-name">{{p.name}}</p>
+          <span class="deal-cat">{{p.category}} · {{p.subcategory}}</span>
+
+          <div class="deal-price-row">
+            <span class="deal-price">₹{{p.price | number}}</span>
+            <span class="deal-orig">₹{{p.originalPrice | number}}</span>
+          </div>
+
+          <div class="deal-savings">
+            <ion-icon name="checkmark-circle" color="success"></ion-icon>
+            <span>You save ₹{{savedAmount(p) | number}}</span>
+          </div>
+
+          <div class="deal-rating">
+            <ion-icon name="star" color="warning"></ion-icon>
+            <span>{{p.rating}}</span>
+            <span class="deal-rev">({{p.reviews | number}})</span>
+          </div>
+        </div>
+
+        <ion-button
+          size="small"
+          class="deal-cart-btn"
+          (click)="addToCart(p, $event)"
+        >
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          Add
+        </ion-button>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="height: 20px;"></div>
+</ion-content>

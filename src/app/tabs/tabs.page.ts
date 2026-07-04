@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  get cartCount() {
+    return this.cartService.getCount();
+  }
 
-  constructor() {}
+  constructor(private router: Router, private cartService: CartService) {}
 
+  goToCart() {
+    this.router.navigateByUrl('/cart');
+  }
 }

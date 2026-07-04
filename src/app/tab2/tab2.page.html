@@ -1,17 +1,84 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Cards
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Categories</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" routerLink="/cart">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="categories-layout">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+      <div
+        *ngFor="let cat of categories; let i = index"
+        class="sidebar-item"
+        [class.active]="selectedCategoryIndex === i"
+        (click)="selectCategory(i)"
+      >
+        <ion-icon [name]="cat.icon"></ion-icon>
+        <span>{{cat.name}}</span>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="sub-panel">
+      <div class="sub-header">
+        <h3>{{currentCategory}}</h3>
+      </div>
+
+      <!-- Subcategory Filter Chips -->
+      <div class="sub-chips">
+        <div
+          class="chip"
+          [class.active]="selectedSubcategory === ''"
+          (click)="selectSubcategory('')"
+        >All</div>
+        <div
+          class="chip"
+          *ngFor="let sub of subcategories"
+          [class.active]="selectedSubcategory === sub"
+          (click)="selectSubcategory(sub)"
+        >{{sub}}</div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+        <div
+          class="prod-card"
+          *ngFor="let p of displayProducts"
+          (click)="openProduct(p)"
+        >
+          <div class="prod-img" [style.background]="p.bgColor">
+            <ion-icon [name]="p.icon"></ion-icon>
+            <span class="prod-disc">{{p.discount}}%</span>
+            <button class="prod-wish" (click)="toggleWishlist(p, $event)">
+              <ion-icon [name]="isWishlisted(p.id) ? 'heart' : 'heart-outline'"
+                        [color]="isWishlisted(p.id) ? 'danger' : 'light'"></ion-icon>
+            </button>
+          </div>
+          <div class="prod-info">
+            <p class="prod-name">{{p.name}}</p>
+            <span class="prod-price">₹{{p.price | number}}</span>
+            <span class="prod-orig">₹{{p.originalPrice | number}}</span>
+            <div class="prod-rating">
+              <ion-icon name="star" color="warning"></ion-icon>
+              <span>{{p.rating}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-cat" *ngIf="displayProducts.length === 0">
+          <ion-icon name="cube-outline"></ion-icon>
+          <p>No products in this subcategory</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

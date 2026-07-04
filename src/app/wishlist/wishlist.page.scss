@@ -1,0 +1,204 @@
+ion-content {
+  --background: #f7f8fa;
+}
+
+ion-header ion-toolbar {
+  --background: #fff;
+  --color: #1a1a1a;
+  --border-color: #f0f0f0;
+}
+
+/* ── Empty State ── */
+.empty-wishlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 24px;
+  text-align: center;
+  gap: 12px;
+
+  .empty-icon-wrap {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fde8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+
+    ion-icon {
+      font-size: 48px;
+      color: #eb445a;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 260px;
+  }
+
+  .explore-btn {
+    --background: #FF6B02;
+    --border-radius: 14px;
+    --box-shadow: 0 4px 14px rgba(255,107,2,0.3);
+    font-weight: 700;
+    margin-top: 10px;
+    width: 220px;
+  }
+}
+
+/* ── Wishlist Grid ── */
+.wishlist-grid {
+  padding: 14px 14px 0;
+}
+
+.wish-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+
+  ion-icon { font-size: 16px; }
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+  }
+}
+
+.wish-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* ── Wish Card ── */
+.wish-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.15s;
+
+  &:active { transform: scale(0.97); }
+}
+
+/* Remove heart button */
+.remove-heart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+
+  ion-icon { font-size: 16px; }
+
+  &:active { transform: scale(0.9); }
+}
+
+/* Product image section */
+.wish-img {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  ion-icon {
+    font-size: 64px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .disc-tag {
+    position: absolute;
+    bottom: 7px;
+    left: 7px;
+    background: #eb445a;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+  }
+}
+
+/* Info section */
+.wish-info {
+  padding: 10px 10px 12px;
+
+  .wish-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.35;
+  }
+
+  .wish-price-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 4px;
+
+    .wish-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .wish-orig {
+      font-size: 11px;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+  }
+
+  .wish-rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 8px;
+
+    ion-icon { font-size: 12px; }
+    span { font-size: 11px; color: #555; }
+    .wish-rev { color: #aaa; }
+  }
+
+  .add-cart-btn {
+    --background: #FF6B02;
+    --border-radius: 10px;
+    --box-shadow: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 34px;
+  }
+}
