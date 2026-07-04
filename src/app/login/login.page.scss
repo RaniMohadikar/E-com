@@ -1,0 +1,60 @@
+ion-header {
+  text-align: center;
+}
+
+.img {
+  height: 100px;
+  margin-top: 20px;
+}
+
+.head {
+  text-align: left;
+  padding-left: 23px;
+}
+
+.p {
+  text-align: left;
+  color: gray;
+  padding-left: 23px;
+  font-size: smaller;
+}
+
+.loginbtn {
+  --background: #b3ca0f;
+  --color: #f5f6f9;
+  margin-top: 20px;
+}
+
+.forgot-col {
+  text-align: right;
+  padding-right: 20px;
+  font-size: small;
+}
+
+.r2 {
+  text-align: center;
+  font-size: small;
+}
+
+.r3 {
+  text-align: center;
+  font-size: small;
+  padding-top: 40px;
+}
+
+.a {
+  color: #b3ca0f;
+  text-decoration: none;
+}
+
+ion-item {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+  margin: 2vh;
+}
+
+.btn1, .btn2, .btn3, .btn4 {
+  --background: white;
+  border-radius: 5px;
+}
